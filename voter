@@ -1,0 +1,50 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAX_LENGTH 50
+
+typedef struct Voter {
+    char name[MAX_LENGTH];
+    char address[MAX_LENGTH];
+    int age;
+    char voter_id[MAX_LENGTH];
+    char state[MAX_LENGTH];
+    int registered;
+} Voter;
+
+void verify_voter(Voter *voter) {
+    if (voter->age < 18) {
+        printf("Sorry, %s, you are not old enough to vote.\n", voter->name);
+    } else if (voter->registered == 0) {
+        printf("Sorry, %s, you are not registered to vote.\n", voter->name);
+    } else {
+        printf("Congratulations, %s! You are eligible to vote.\n", voter->name);
+    }
+}
+
+int main() {
+    Voter voter;
+
+    printf("Enter your name: ");
+    scanf("%s", voter.name);
+
+    printf("Enter your address: ");
+    scanf("%s", voter.address);
+
+    printf("Enter your age: ");
+    scanf("%d", &voter.age);
+
+    printf("Enter your voter ID: ");
+    scanf("%s", voter.voter_id);
+
+    printf("Enter your state: ");
+    scanf("%s", voter.state);
+
+    printf("Are you registered to vote? (1 for yes, 0 for no): ");
+    scanf("%d", &voter.registered);
+
+    verify_voter(&voter);
+
+    return 0;
+}
